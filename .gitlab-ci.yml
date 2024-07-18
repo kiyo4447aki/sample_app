@@ -5,7 +5,6 @@ stages:
     - deploy
 
 before_script:
-    - yarn cache clean
     - yarn install
 
 cache:
@@ -19,6 +18,7 @@ deploy_job:
     script:
         - yarn run build
         - yarn global add firebase-tools
+        - yarn info firebase-tools
         - touch cert.json
         - echo -n $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > cert.json
         - export GOOGLE_APPLICATION_CREDENTIALS="cert.json"
