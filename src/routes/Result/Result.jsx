@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import Header from "../../components/Header"
 import Container from "../../components/Container"
@@ -12,7 +12,7 @@ import { getAverage, msToTimestamp } from "../../utils/utils"
 const Result = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
-	const time = useRef()
+	const [time, setTime] = useState()
 	const missCount = useRef()
 	const rate = useRef()
 	const average = useRef()
@@ -22,7 +22,7 @@ const Result = () => {
 			navigate("/", { replace: true })
 		} else {
 			const ms = location.state.time
-			time.current = msToTimestamp(ms)
+			setTime(msToTimestamp(ms))
 			missCount.current = location.state.missCount
 			rate.current = String((10 / (10 + missCount.current)) * 100).slice(0, 5)
 			average.current = getAverage(ms)
@@ -38,7 +38,7 @@ const Result = () => {
 						<Title>結果</Title>
 						<List>
 							<ListItem>
-								経過時間: <BlueText>{time.current}</BlueText>
+								経過時間: <BlueText>{time}</BlueText>
 							</ListItem>
 							<ListItem>
 								正しく打ったキーの数: <BlueText>10</BlueText>
