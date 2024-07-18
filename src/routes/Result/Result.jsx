@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
 import Header from "../../components/Header"
 import Container from "../../components/Container"
@@ -12,11 +12,22 @@ import { getAverage, msToTimestamp } from "../../utils/utils"
 const Result = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
-	const ms = location.state.time
-	const time = msToTimestamp(ms)
-	const missCount = location.state.missCount
-	const rate = String((10 / (10 + missCount)) * 100).slice(0, 5)
-	const average = getAverage(ms)
+	const time = useRef()
+	const missCount = useRef()
+	const rate = useRef()
+	const average = useRef()
+
+	useEffect(() => {
+		if (!location.state) {
+			navigate("/", { replace: true })
+		} else {
+			const ms = location.state.time
+			time.current = msToTimestamp(ms)
+			missCount.current = location.state.missCount
+			rate.current = String((10 / (10 + missCount.current)) * 100).slice(0, 5)
+			average.current = getAverage(ms)
+		}
+	}, [])
 
 	return (
 		<Container>
@@ -27,19 +38,19 @@ const Result = () => {
 						<Title>結果</Title>
 						<List>
 							<ListItem>
-								経過時間: <BlueText>{time}</BlueText>
+								経過時間: <BlueText>{time.current}</BlueText>
 							</ListItem>
 							<ListItem>
 								正しく打ったキーの数: <BlueText>10</BlueText>
 							</ListItem>
 							<ListItem>
-								平均キータイプ数: <BlueText>{average}</BlueText>回/秒
+								平均キータイプ数: <BlueText>{average.current}</BlueText>回/秒
 							</ListItem>
 							<ListItem>
-								ミスタイプ数: <BlueText>{missCount}</BlueText>
+								ミスタイプ数: <BlueText>{missCount.current}</BlueText>
 							</ListItem>
 							<ListItem>
-								正確率: <BlueText>{rate}</BlueText>%
+								正確率: <BlueText>{rate.current}</BlueText>%
 							</ListItem>
 						</List>
 						<Button
