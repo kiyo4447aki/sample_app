@@ -6,7 +6,6 @@ stages:
 
 before_script:
     - yarn install
-    - npm install
 
 cache:
     paths:
@@ -18,8 +17,7 @@ deploy_job:
         CI: false
     script:
         - yarn run build
-        - npm install -g firebase-tools
-        - yarn global list
+        - yarn global add firebase-tools
         - touch cert.json
         - echo -n $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > cert.json
         - export GOOGLE_APPLICATION_CREDENTIALS="cert.json"
