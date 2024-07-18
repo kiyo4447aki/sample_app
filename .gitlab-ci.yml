@@ -1,8 +1,8 @@
 image: node:latest
 
 stages:
-    - deploy
     - test
+    - deploy
 
 before_script:
     - yarn install
@@ -13,6 +13,8 @@ cache:
 
 deploy_job:
     stage: deploy
+    env:
+        CI: false
     script:
         - yarn run build
         - yarn global add firebase-tools
