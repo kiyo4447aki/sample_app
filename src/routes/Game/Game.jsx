@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import Header from "../../components/Header"
 import Container from "../../components/Container"
@@ -7,12 +7,43 @@ import ContentWrapper from "../../components/ContentWrapper"
 import ItemsWrapper from "../../components/ItemsWrapper"
 import Button from "../../components/Button"
 import { useNavigate } from "react-router"
+import { getSymbol } from "../../utils/utils"
 
 const Game = () => {
 	const navigate = useNavigate()
 	const [clearCount, setClearCount] = useState(0)
-	const [missCount, setMissCount] = useState()
-	const [symbol, setSymbol] = useState()
+	const [missCount, setMissCount] = useState(0)
+	const [symbol, setSymbol] = useState(getSymbol())
+	const symbolRef = useRef(null)
+	const clearCountRef = useRef(null)
+	symbolRef.current = symbol
+	clearCountRef.current = clearCount
+	const startTime = useRef(null)
+	const missCountRef = useRef(null)
+	missCountRef.current = missCount
+
+	useEffect(() => {
+		document.addEventListener("keypress", onKeypress)
+		startTime.current = Date.now()
+
+		return () => {
+			document.removeEventListener("keypress", onKeypress)
+		}
+	}, [])
+
+	const onKeypress = (event) => {
+		if (symbolRef.current === event.key) {
+			setClearCount((prevCount) => prevCount + 1)
+			setSymbol(getSymbol())
+			const time = Date.now() - startTime.current
+			if (clearCountRef.current === 10) {
+				navigate("/result", { state: { missCount: missCountRef.current, time: time } })
+			}
+		} else {
+			setMissCount((prevCount) => prevCount + 1)
+		}
+	}
+
 	return (
 		<Container>
 			<Header />
@@ -20,7 +51,7 @@ const Game = () => {
 				<GameBox>
 					<ItemsWrapper>
 						<Text>表示された数字または記号のキーを押してください</Text>
-						<Synbol>(</Synbol>
+						<Synbol>{symbol}</Synbol>
 						<FooterWrapper>
 							<FooterText>問題数: 10</FooterText>
 							<FooterText>正解数: {clearCount}</FooterText>

@@ -8,7 +8,7 @@ const Button = styled.button`
 	font-size: 15px;
 	line-height: 30px;
 	color: rgb(255, 255, 255);
-	background-color: rgb(14, 99, 156);
+	background-color: #009944;
 	border-width: 0px;
 	outline: 0px;
 	box-sizing: border-box;

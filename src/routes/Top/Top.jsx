@@ -17,7 +17,7 @@ const Top = () => {
 			<ContentWrapper>
 				<GameBox>
 					<ItemsWrapper>
-						<Title>NS-TYPING</Title>
+						<Title>YK-TYPING</Title>
 						<Subtitle>数字・記号専用のタイピング練習ゲーム</Subtitle>
 						<Button
 							onClick={() => {

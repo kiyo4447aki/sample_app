@@ -8,7 +8,7 @@ const GameBox = styled.div`
 	margin-left: auto;
 	margin-right: auto;
 	border: 8px solid rgb(22, 130, 93);
-	background-color: rgb(30, 30, 30);
+	background-color: #404040;
 	box-sizing: border-box;
 `
 

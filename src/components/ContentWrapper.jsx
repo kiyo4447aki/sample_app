@@ -6,14 +6,7 @@ const ContentWrapper = styled.div`
 	padding-top: 150px;
 	padding-left: 200px;
 	padding-right: 200px;
-	background-color: rgb(222, 222, 222);
-	background-image: linear-gradient(
-		rgb(236, 235, 235),
-		rgb(236, 235, 235) 50%,
-		transparent 50%,
-		transparent
-	);
-	background-size: 5px 5px;
+	background-image: url("./assets/background.jpg");
 	box-sizing: border-box;
 `
 

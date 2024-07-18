@@ -1,0 +1,33 @@
+image: node:latest
+
+stages:
+    - deploy
+    - test
+
+before_script:
+    - yarn install
+
+cache:
+    paths:
+        - node_modules/
+
+deploy_job:
+    stage: deploy
+    script:
+        - yarn run build
+        - yarn global add firebase-tools
+        - touch cert.json
+        - echo -n $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > cert.json
+        - export GOOGLE_APPLICATION_CREDENTIALS="cert.json"
+        - firebase deploy --only hosting
+        - rm cert.json
+        - unset GOOGLE_APPLICATION_CREDENTIALS
+    rules:
+        - when: always
+
+test:
+    stage: test
+    script:
+        - yarn test
+    rules:
+        - when: always

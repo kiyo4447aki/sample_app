@@ -6150,6 +6150,11 @@ jest-snapshot@^27.5.1:
     pretty-format "^27.5.1"
     semver "^7.3.2"
 
+jest-to-equal-type@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/jest-to-equal-type/-/jest-to-equal-type-0.1.0.tgz#7b0b16d9e5a13d60150d98fa3eec5f1ac681f275"
+  integrity sha512-J9NvEq8mz7FmHkvvcKWxu23fmg1/E3pI0B/TQ7pYM0wepZd0dqJrn4AC5ETd7N2YrOvvH02Q99XE2Z+Qy9Mrlg==
+
 jest-util@^27.5.1:
   version "27.5.1"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-27.5.1.tgz#3ba9771e8e31a0b85da48fe0b0891fb86c01c2f9"

@@ -4,7 +4,7 @@ import styled from "styled-components"
 const Header = () => {
 	return (
 		<Wrapper>
-			<Title>NS-TYPING</Title>
+			<Title>YK-TYPING</Title>
 		</Wrapper>
 	)
 }
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 	width: 100%;
 	height: 80px;
 	text-align: center;
-	background-color: rgb(0, 122, 204);
+	background-color: #009944;
 	line-height: 80px;
 `
 
