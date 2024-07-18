@@ -13,8 +13,9 @@ cache:
 
 deploy_job:
     stage: deploy
+    variables:
+        CI: false
     script:
-        - set CI="false"
         - yarn run build
         - yarn global add firebase-tools
         - touch cert.json
