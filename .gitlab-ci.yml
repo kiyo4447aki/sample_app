@@ -16,8 +16,8 @@ deploy_job:
     variables:
         CI: false
     script:
-        - yarn global add firebase-tools
         - yarn run build
+        - yarn global add firebase-tools
         - touch cert.json
         - echo -n $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > cert.json
         - export GOOGLE_APPLICATION_CREDENTIALS="cert.json"
