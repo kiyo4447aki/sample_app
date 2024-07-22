@@ -8,12 +8,11 @@ import userEvent from "@testing-library/user-event"
 describe("Top", () => {
 	test("Topコンポーネントのレンダリング", () => {
 		render(<Top />, { wrapper: BrowserRouter })
-		const title = screen.getAllByText("YK-TYPING")
-		expect(title).toHaveLength(2)
+		expect(screen.getAllByText("YK-TYPING")).toHaveLength(2)
 		expect(screen.getByText("数字・記号専用のタイピング練習ゲーム")).toBeInTheDocument()
 		expect(screen.getByRole("button")).toBeInTheDocument()
 	})
-	test("ボタンを押下し、プレイページに遷移できる", async () => {
+	test("プレイするボタンを押下し、プレイページに遷移できる", async () => {
 		render(
 			<BrowserRouter>
 				<Routes>

@@ -6,7 +6,7 @@ import GameBox from "../../components/GameBox"
 import ContentWrapper from "../../components/ContentWrapper"
 import ItemsWrapper from "../../components/ItemsWrapper"
 import Button from "../../components/Button"
-import { useLocation, useNavigate } from "react-router"
+import { useLocation, useNavigate } from "react-router-dom"
 import { getAverage, msToTimestamp } from "../../utils/utils"
 
 const Result = () => {
@@ -37,19 +37,19 @@ const Result = () => {
 					<ItemsWrapper>
 						<Title>結果</Title>
 						<List>
-							<ListItem>
+							<ListItem className="time">
 								経過時間: <BlueText>{time}</BlueText>
 							</ListItem>
-							<ListItem>
+							<ListItem className="correctCount">
 								正しく打ったキーの数: <BlueText>10</BlueText>
 							</ListItem>
-							<ListItem>
+							<ListItem className="average">
 								平均キータイプ数: <BlueText>{average.current}</BlueText>回/秒
 							</ListItem>
-							<ListItem>
+							<ListItem className="missCount">
 								ミスタイプ数: <BlueText>{missCount.current}</BlueText>
 							</ListItem>
-							<ListItem>
+							<ListItem className="rate">
 								正確率: <BlueText>{rate.current}</BlueText>%
 							</ListItem>
 						</List>
