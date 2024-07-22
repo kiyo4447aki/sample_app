@@ -37,19 +37,19 @@ const Result = () => {
 					<ItemsWrapper>
 						<Title>結果</Title>
 						<List>
-							<ListItem className="time">
+							<ListItem data-testid="time">
 								経過時間: <BlueText>{time}</BlueText>
 							</ListItem>
-							<ListItem className="correctCount">
+							<ListItem data-testid="correctCount">
 								正しく打ったキーの数: <BlueText>10</BlueText>
 							</ListItem>
-							<ListItem className="average">
+							<ListItem data-testid="average">
 								平均キータイプ数: <BlueText>{average.current}</BlueText>回/秒
 							</ListItem>
-							<ListItem className="missCount">
+							<ListItem data-testid="missCount">
 								ミスタイプ数: <BlueText>{missCount.current}</BlueText>
 							</ListItem>
-							<ListItem className="rate">
+							<ListItem data-testid="rate">
 								正確率: <BlueText>{rate.current}</BlueText>%
 							</ListItem>
 						</List>

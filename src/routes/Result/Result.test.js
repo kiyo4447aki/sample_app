@@ -19,13 +19,13 @@ describe("Result", () => {
 				time: 100000,
 			},
 		})
-		const { container } = render(<Result />, { wrapper: BrowserRouter })
+		render(<Result />, { wrapper: BrowserRouter })
 		expect(screen.getByText("結果")).toBeInTheDocument()
-		expect(screen.getByText("経過時間: ")).toBeInTheDocument()
-		expect(screen.getByText("正しく打ったキーの数")).toBeInTheDocument()
-		expect(screen.getByText("平均キータイプ数")).toBeInTheDocument()
-		expect(screen.getByText("ミスタイプ数")).toBeInTheDocument()
-		expect(screen.getByText("正確率")).toBeInTheDocument()
+		expect(screen.getByTestId("time")).toBeInTheDocument()
+		expect(screen.getByTestId("correctCount")).toBeInTheDocument()
+		expect(screen.getByTestId("average")).toBeInTheDocument()
+		expect(screen.getByTestId("missCount")).toBeInTheDocument()
+		expect(screen.getByTestId("rate")).toBeInTheDocument()
 	})
 	test("タイトルに戻るボタンを押下し、トップページに遷移できる", async () => {
 		const mockUseLocation = useLocation
