@@ -47,4 +47,19 @@ describe("Result", () => {
 		await user.click(screen.getByRole("button"))
 		expect(screen.getByText("数字・記号専用のタイピング練習ゲーム")).toBeInTheDocument()
 	})
+	test("結果が正しく表示される", () => {
+		const mockUseLocation = useLocation
+		mockUseLocation.mockReturnValue({
+			state: {
+				missCount: 5,
+				time: 100000,
+			},
+		})
+		render(<Result />, { wrapper: BrowserRouter })
+		expect(screen.getByText("01:40:00")).toBeInTheDocument()
+		expect(screen.getByText("10")).toBeInTheDocument()
+		expect(screen.getByText("0.3")).toBeInTheDocument()
+		expect(screen.getByText("5")).toBeInTheDocument()
+		expect(screen.getByText("66.66")).toBeInTheDocument()
+	})
 })

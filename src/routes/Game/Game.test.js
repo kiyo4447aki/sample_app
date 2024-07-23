@@ -45,12 +45,14 @@ describe("Game", () => {
 			if (symbol === "{") {
 				symbol = "{{"
 			} else if (symbol === "[") {
-				symbol === "[["
+				symbol = "[["
 			}
 			await user.keyboard(symbol)
-			expect(screen.getByText(`正解数: ${i + 1}`)).toBeInTheDocument()
+			if (i !== 9) {
+				expect(screen.getByText(`正解数: ${i + 1}`)).toBeInTheDocument()
+			}
 		}
-		waitFor(() => {
+		await waitFor(() => {
 			expect(screen.getByText("結果")).toBeInTheDocument()
 		})
 	})
@@ -67,7 +69,7 @@ describe("Game", () => {
 		for (let i = 0; i < 10; i++) {
 			await user.keyboard("あ")
 		}
-		waitFor(() => {
+		await waitFor(() => {
 			expect(screen.getByText("正解数: 0")).toBeInTheDocument()
 		})
 	})

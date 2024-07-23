@@ -36,7 +36,7 @@ const Game = () => {
 			setClearCount((prevCount) => prevCount + 1)
 			setSymbol(getSymbol())
 			const time = Date.now() - startTime.current
-			if (clearCountRef.current === 10) {
+			if (clearCountRef.current === 9) {
 				navigate("/result", { state: { missCount: missCountRef.current, time: time } })
 			}
 		} else {
