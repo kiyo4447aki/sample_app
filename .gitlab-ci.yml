@@ -45,3 +45,5 @@ e2e:
         - yarn cypress run
     only:
         - staging
+    dependencies:
+        - install
