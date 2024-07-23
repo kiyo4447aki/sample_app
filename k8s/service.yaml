@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: service-game-app
+spec:
+    selector:
+        app: game-app
+    type: NodePort
+    ports:
+        - protocol: TCP
+          port: 3000
+          targetPort: 3000

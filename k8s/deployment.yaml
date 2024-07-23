@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: deployment-game-app
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: game-app
+
+    template:
+        metadata:
+            labels:
+                app: game-app
+        spec:
+            containers:
+                - name: game-app
+                  image: "game-app:1"
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - containerPort: 3000
