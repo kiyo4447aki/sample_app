@@ -31,8 +31,6 @@ test:
     stage: test
     script:
         - yarn test
-        - yarn run cypress install --force
-        - yarn run cypress run
     rules:
         - when: always
 
@@ -43,7 +41,5 @@ e2e:
         - yarn add cypress
         - yarn start &
         - yarn cypress run
-    only:
-        - staging
-    dependencies:
-        - install
+    rules:
+        - when: always
