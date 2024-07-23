@@ -35,3 +35,13 @@ test:
         - yarn run cypress run
     rules:
         - when: always
+
+e2e:
+    image: cypress/browsers:latest
+    stage: test
+    script:
+        - yarn add cypress
+        - yarn start &
+        - yarn cypress run
+    only:
+        - staging
