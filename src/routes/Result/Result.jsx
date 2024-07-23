@@ -35,7 +35,7 @@ const Result = () => {
 			<ContentWrapper>
 				<GameBox>
 					<ItemsWrapper>
-						<Title>結果</Title>
+						<Title data-testid="title">結果</Title>
 						<List>
 							<ListItem data-testid="time">
 								経過時間: <BlueText>{time}</BlueText>

@@ -17,8 +17,10 @@ const Top = () => {
 			<ContentWrapper>
 				<GameBox>
 					<ItemsWrapper>
-						<Title>YK-TYPING</Title>
-						<Subtitle>数字・記号専用のタイピング練習ゲーム</Subtitle>
+						<Title data-testid="title">YK-TYPING</Title>
+						<Subtitle data-testid="subtitle">
+							数字・記号専用のタイピング練習ゲーム
+						</Subtitle>
 						<Button
 							onClick={() => {
 								navigate("/play")

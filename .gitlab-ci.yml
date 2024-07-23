@@ -31,5 +31,6 @@ test:
     stage: test
     script:
         - yarn test
+        - yarn run cypress run
     rules:
         - when: always

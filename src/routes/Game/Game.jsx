@@ -51,7 +51,9 @@ const Game = () => {
 				<GameBox>
 					<ItemsWrapper>
 						<Text>表示された数字または記号のキーを押してください</Text>
-						<Synbol className="symbol">{symbol}</Synbol>
+						<Synbol className="symbol" data-testid="symbol">
+							{symbol}
+						</Synbol>
 						<FooterWrapper>
 							<FooterText>問題数: 10</FooterText>
 							<FooterText>正解数: {clearCount}</FooterText>
