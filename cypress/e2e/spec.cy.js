@@ -9,7 +9,8 @@ describe("cypressによるE2Eテスト", () => {
 		for (let i = 0; i < 10; i++) {
 			cy.get('[data-testid="symbol"]')
 				.invoke("text")
-				.then((symbol) => {
+				.then(async (symbol) => {
+					await new Promise((resolve) => setTimeout(resolve, 1000))
 					cy.get("body").type(symbol)
 				})
 		}
