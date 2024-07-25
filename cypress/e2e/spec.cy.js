@@ -1,10 +1,13 @@
-//mswによるサービスワーカーの登録
-//これによりAPIをモックする
-if (process.env.NODE_ENV === "development") {
-	const { worker } = require("../../mock/Browser")
-	worker.start()
-}
+import { getSymbol } from "../../src/utils/utils"
+
 describe("cypressによるE2Eテスト", () => {
+	beforeEach(() => {
+		cy.intercept("GET", "http://webapi.kiyoakiyamamoto.info/getsymbol", {
+			statusCode: 200,
+			body: getSymbol(),
+		})
+	})
+
 	it("トップページからゲームを完了し、結果画面からトップページまで戻る", () => {
 		cy.visit("/")
 		cy.get("[data-testid=title]").should("have.text", "YK-TYPING")
