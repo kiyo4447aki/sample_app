@@ -24,3 +24,84 @@
 -   ヘッダー・ボタンのカラーの変更
 -   背景の変更
 -   ゲームの表示領域のカラーの変更
+
+# k8s の環境構築(Windows 環境下)
+
+1. kubectl、minikube をインストール
+
+2. minikube を起動・クラスタを作成
+
+```
+minikube start
+```
+
+3. docker を minikube へ接続（Windows 環境下、powershell 上）
+   linux 上の`eval $(minikube docker-env)`に相当
+
+```
+minikube docker-env --shell powershell | Invoke-Expression
+```
+
+5. Docker イメージのビルド
+
+```
+docker build -t game-app:1 .
+```
+
+6. deployment、service を minikube クラスタへ登録
+
+```
+kubectl apply -f ./k8s/deployment.yaml -f ./k8s/service.yaml
+```
+
+7. service を通じてアプリにアクセスできることを確認
+
+```
+minikube service service-game-app
+```
+
+# ingress の環境構築(Windows 環境下)
+
+1. NGINX Ingress コントローラーを有効化
+
+```
+minikube addons enable ingress
+```
+
+2. ingress を minikube クラスタへ登録
+
+```
+kubectl apply -f ./ingress/ingress.yaml
+```
+
+3. minikube とホストマシンの 127.0.0.1 をトンネリング
+
+```
+minikube tunnel
+```
+
+4. ホストマシンの hosts ファイルに`127.0.0.1 kiyoakiyamamoto.info`を追記
+5. host 名でアプリにアクセスできることを確認
+   ブラウザもしくは curl コマンドを用いて kiyoakiyamamoto.info へアクセス
+
+# ingress の環境構築(Windows 環境下)
+
+1. クラスタ内に前回作成したリソースを削除
+
+```
+kubectl delete -f ./k8s/deployment.yaml -f ./k8s/service.yaml -f ./ingress/ingress.yaml
+```
+
+2. skaffold のマニフェストファイルを作成
+
+```
+skaffold init
+```
+
+3. skaffold を起動、pod、replicaset、deployment、service、ingress を作成
+
+```
+skaffold dev
+```
+
+4. minikube とホストマシンの 127.0.0.1 をトンネリングし(ingress の環境構築を参照)、動作確認
