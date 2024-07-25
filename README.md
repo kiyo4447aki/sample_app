@@ -139,3 +139,5 @@ yarn cypress run
 ```
 skaffold dev
 ```
+
+3. minikube のトンネリングを行い`minikube tunnel`、ホストマシンの hosts ファイルに`127.0.0.1 webapi.kiyoakiyamamoto.info`を追記
