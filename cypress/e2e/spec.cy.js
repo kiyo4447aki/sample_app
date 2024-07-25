@@ -1,3 +1,8 @@
+//mswによるサービスワーカーの登録
+//これによりAPIをモックする
+import { worker } from "../../mock/Browser"
+worker.start()
+
 describe("cypressによるE2Eテスト", () => {
 	it("トップページからゲームを完了し、結果画面からトップページまで戻る", () => {
 		cy.visit("/")

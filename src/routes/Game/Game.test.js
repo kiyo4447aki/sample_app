@@ -3,11 +3,16 @@ import Top from "../Top/Top"
 import Result from "../Result/Result"
 
 import { render, screen, waitFor } from "@testing-library/react"
-import { BrowserRouter, Routes, Route, createBrowserRouter, MemoryRouter } from "react-router-dom"
+import { BrowserRouter, Routes, Route, MemoryRouter } from "react-router-dom"
 import { userEvent } from "@testing-library/user-event"
+
+import axios from "axios"
+import { getSymbol } from "../../utils/utils"
+jest.mock("axios")
 
 describe("Game", () => {
 	test("Gameコンポーネントのレンダリング", () => {
+		axios.get.mockResolvedValue({ status: 200, data: getSymbol() })
 		render(<Game />, { wrapper: BrowserRouter })
 		expect(
 			screen.getByText("表示された数字または記号のキーを押してください")
@@ -17,6 +22,7 @@ describe("Game", () => {
 		expect(screen.getByRole("button")).toBeInTheDocument()
 	})
 	test("タイトルに戻るボタンを押下し、トップページに遷移できる", async () => {
+		axios.get.mockResolvedValue({ status: 200, data: getSymbol() })
 		render(
 			<MemoryRouter initialEntries={["/play"]}>
 				<Routes>
@@ -30,6 +36,7 @@ describe("Game", () => {
 		expect(screen.getByText("数字・記号専用のタイピング練習ゲーム")).toBeInTheDocument()
 	})
 	test("正解数が正しくカウントされ、10問正解後に結果画面へ遷移する", async () => {
+		axios.get.mockResolvedValue({ status: 200, data: getSymbol() })
 		const { container } = render(
 			<MemoryRouter initialEntries={["/play"]}>
 				<Routes>
@@ -59,6 +66,7 @@ describe("Game", () => {
 		})
 	})
 	test("不正解のとき、正解数が増えず、画面遷移を行わない", async () => {
+		axios.get.mockResolvedValue({ status: 200, data: getSymbol() })
 		render(
 			<MemoryRouter initialEntries={["/play"]}>
 				<Routes>
