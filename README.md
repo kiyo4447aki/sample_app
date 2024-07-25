@@ -105,3 +105,37 @@ skaffold dev
 ```
 
 4. minikube とホストマシンの 127.0.0.1 をトンネリングし(ingress の環境構築を参照)、動作確認
+
+# API の構築
+
+タイピングを行う文字をランダムに取得するメソッドを API に切り出し
+
+1. game-app、API の起動
+
+```
+yarn run start
+cd api
+node index.js
+```
+
+2. テスト(jest、RTL)
+
+```
+yarn run test
+```
+
+3. E2E テスト(Cypress)
+   game-app と API を起動した状態で
+
+```
+yarn cypress run
+```
+
+# API を minikube にデプロイ
+
+1. minikube を起動、docker を minikube に接続(k8s の環境構築を参照)
+2. skaffold を起動、pod、replicaset、deployment、service、ingress を作成
+
+```
+skaffold dev
+```
