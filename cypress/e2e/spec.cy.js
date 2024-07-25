@@ -1,8 +1,9 @@
 //mswによるサービスワーカーの登録
 //これによりAPIをモックする
-import { worker } from "../../mock/Browser"
-worker.start()
-
+if (process.env.NODE_ENV === "development") {
+	const { worker } = require("../../mock/browser")
+	worker.start()
+}
 describe("cypressによるE2Eテスト", () => {
 	it("トップページからゲームを完了し、結果画面からトップページまで戻る", () => {
 		cy.visit("/")
