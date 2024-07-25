@@ -6,6 +6,7 @@
 		"@testing-library/jest-dom": "^5.17.0",
 		"@testing-library/react": "13",
 		"@testing-library/user-event": "^14.5.2",
+		"axios": "^1.7.2",
 		"dayjs": "^1.11.11",
 		"jest-to-equal-type": "^0.1.0",
 		"react": "^18.3.1",
@@ -45,5 +46,13 @@
 	"devDependencies": {
 		"cypress": "^13.13.1",
 		"eslint-plugin-cypress": "^3.3.0"
+	},
+	"jest": {
+		"transform": {
+			"^.+\\.(js|jsx)$": "babel-jest"
+		},
+		"transformIgnorePatterns": [
+			"node_modules/(?!axios)"
+		]
 	}
 }

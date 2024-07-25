@@ -4,6 +4,7 @@ describe("cypressによるE2Eテスト", () => {
 		cy.get("[data-testid=title]").should("have.text", "YK-TYPING")
 		cy.get("button").click()
 		cy.url().should("include", "/play")
+		cy.wait(500)
 		cy.get('[data-testid="symbol"]').should("exist")
 
 		for (let i = 0; i < 10; i++) {

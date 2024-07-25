@@ -1,0 +1,50 @@
+const getSymbol = () => {
+	const symbolList = [
+		"!",
+		"'",
+		'"',
+		"`",
+		"#",
+		"$",
+		"%",
+		"&",
+		"(",
+		")",
+		"*",
+		"+",
+		",",
+		"-",
+		".",
+		"/",
+		":",
+		";",
+		"<",
+		">",
+		"?",
+		"=",
+		"@",
+		"[",
+		"]",
+		"\\",
+		"^",
+		"{",
+		"}",
+		"_",
+		"|",
+		"0",
+		"1",
+		"2",
+		"3",
+		"4",
+		"5",
+		"6",
+		"7",
+		"8",
+		"9",
+	]
+
+	const symbol = symbolList[Math.floor(Math.random() * symbolList.length)]
+	return symbol
+}
+
+export default getSymbol

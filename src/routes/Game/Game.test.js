@@ -40,6 +40,7 @@ describe("Game", () => {
 		)
 		const user = userEvent.setup()
 		let symbol
+		await new Promise((resolve) => setTimeout(resolve, 1000))
 		for (let i = 0; i < 10; i++) {
 			symbol = container.getElementsByClassName("symbol").item(0)?.textContent
 			if (symbol === "{") {
@@ -49,6 +50,7 @@ describe("Game", () => {
 			}
 			await user.keyboard(symbol)
 			if (i !== 9) {
+				await new Promise((resolve) => setTimeout(resolve, 100))
 				expect(screen.getByText(`正解数: ${i + 1}`)).toBeInTheDocument()
 			}
 		}

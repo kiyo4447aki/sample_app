@@ -5,8 +5,19 @@ metadata:
 build:
     artifacts:
         - image: game-app
+          sync:
+              infer:
+                  - "**/*"
           docker:
               dockerfile: Dockerfile
+        - image: game-app-api
+          context: api
+          sync:
+              infer:
+                  - "**/*"
+          docker:
+              dockerfile: Dockerfile
+
 manifests:
     rawYaml:
         - ingress/ingress.yaml

@@ -19,3 +19,26 @@ spec:
                   imagePullPolicy: IfNotPresent
                   ports:
                       - containerPort: 3000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: deployment-game-app-api
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: game-app-api
+
+    template:
+        metadata:
+            labels:
+                app: game-app-api
+        spec:
+            containers:
+                - name: game-app-api
+                  image: "game-app-api:1"
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - containerPort: 4000

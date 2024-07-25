@@ -7,13 +7,15 @@ import ContentWrapper from "../../components/ContentWrapper"
 import ItemsWrapper from "../../components/ItemsWrapper"
 import Button from "../../components/Button"
 import { useNavigate } from "react-router"
-import { getSymbol } from "../../utils/utils"
+import axios from "axios"
+
+const apiUrl = "http://webapi.kiyoakiyamamoto.info/getsymbol"
 
 const Game = () => {
 	const navigate = useNavigate()
 	const [clearCount, setClearCount] = useState(0)
 	const [missCount, setMissCount] = useState(0)
-	const [symbol, setSymbol] = useState(getSymbol())
+	const [symbol, setSymbol] = useState()
 	const symbolRef = useRef(null)
 	const clearCountRef = useRef(null)
 	symbolRef.current = symbol
@@ -23,6 +25,9 @@ const Game = () => {
 	missCountRef.current = missCount
 
 	useEffect(() => {
+		axios.get(apiUrl).then((res) => {
+			setSymbol(String(res.data))
+		})
 		document.addEventListener("keypress", onKeypress)
 		startTime.current = Date.now()
 
@@ -34,7 +39,9 @@ const Game = () => {
 	const onKeypress = (event) => {
 		if (symbolRef.current === event.key) {
 			setClearCount((prevCount) => prevCount + 1)
-			setSymbol(getSymbol())
+			axios.get(apiUrl).then((res) => {
+				setSymbol(String(res.data))
+			})
 			const time = Date.now() - startTime.current
 			if (clearCountRef.current === 9) {
 				navigate("/result", { state: { missCount: missCountRef.current, time: time } })
