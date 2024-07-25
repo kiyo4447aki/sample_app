@@ -1,7 +1,7 @@
 //mswによるサービスワーカーの登録
 //これによりAPIをモックする
 if (process.env.NODE_ENV === "development") {
-	const { worker } = require("../../mock/browser")
+	const { worker } = require("../../mock/Browser")
 	worker.start()
 }
 describe("cypressによるE2Eテスト", () => {
