@@ -27,7 +27,7 @@ app.post("/result/create", async (req, res) => {
 		res.status(500).send("DB connection error")
 	}
 	Result.create(req.body)
-	console.log(typeof req.body)
+	console.log(req.body)
 	res.status(201).send("created")
 })
 
@@ -39,8 +39,7 @@ app.get("/result/letest", async (req, res) => {
 		console.error(e)
 	}
 	const result = await Result.findOne({ order: [["createdAt", "DESC"]] })
-	//res.status(200).json(result.dataValues)
-	res.status(200).json(await Result.findAll())
+	res.status(200).json(result)
 })
 
 const port = 4000

@@ -9,17 +9,14 @@ const resultModel = {
 	clearTime: {
 		type: DataTypes.STRING,
 	},
-	clearCount: {
-		type: DataTypes.INTEGER,
-	},
 	missCount: {
 		type: DataTypes.INTEGER,
 	},
 	average: {
-		type: DataTypes.FLOAT,
+		type: DataTypes.STRING,
 	},
 	rate: {
-		type: DataTypes.FLOAT,
+		type: DataTypes.STRING,
 	},
 }
 
