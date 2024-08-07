@@ -17,6 +17,20 @@ build:
                   - "**/*"
           docker:
               dockerfile: Dockerfile
+        - image: game-app-postgre-api
+          context: postgreApi
+          sync:
+              infer:
+                  - "**/*"
+          docker:
+              dockerfile: Dockerfile
+        - image: postgre-db
+          context: ./postgreAPI/db
+          sync:
+              infer:
+                  - "**/*"
+          docker:
+              dockerfile: Dockerfile
 
 manifests:
     rawYaml:

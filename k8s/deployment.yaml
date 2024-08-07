@@ -42,3 +42,49 @@ spec:
                   imagePullPolicy: IfNotPresent
                   ports:
                       - containerPort: 4000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: deployment-postgre-db
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: game-app-postgre-db
+
+    template:
+        metadata:
+            labels:
+                app: game-app-postgre-db
+        spec:
+            containers:
+                - name: postgre-db
+                  image: "postgre-db:1"
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - containerPort: 5432
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: deployment-game-app-postgre-api
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: game-app-postgre-api
+
+    template:
+        metadata:
+            labels:
+                app: game-app-postgre-api
+        spec:
+            containers:
+                - name: game-app-postgre-api
+                  image: "game-app-postgre-api:1"
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - containerPort: 5000

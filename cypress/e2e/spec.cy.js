@@ -6,6 +6,13 @@ describe("cypressによるE2Eテスト", () => {
 			statusCode: 200,
 			body: getSymbol(),
 		})
+		cy.intercept("GET", "http://postgre.webapi.kiyoakiyamamoto.info/result/latest", {
+			statusCode: 200,
+			body: { clearTime: "00:00:00", average: "1.0", missCount: 0, rate: "100" },
+		})
+		cy.intercept("POST", "http://postgre.webapi.kiyoakiyamamoto.info/result/create", {
+			statusCode: 200,
+		})
 	})
 
 	it("トップページからゲームを完了し、結果画面からトップページまで戻る", () => {
@@ -16,7 +23,7 @@ describe("cypressによるE2Eテスト", () => {
 		cy.wait(500)
 		cy.get('[data-testid="symbol"]').should("exist")
 
-		for (let i = 0; i < 11; i++) {
+		for (let i = 0; i < 10; i++) {
 			cy.get('[data-testid="symbol"]')
 				.invoke("text")
 				.then(async (symbol) => {
