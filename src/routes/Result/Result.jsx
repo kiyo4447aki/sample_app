@@ -8,25 +8,36 @@ import ItemsWrapper from "../../components/ItemsWrapper"
 import Button from "../../components/Button"
 import { useLocation, useNavigate } from "react-router-dom"
 import { getAverage, msToTimestamp } from "../../utils/utils"
+import axios from "axios"
 
 const Result = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
-	const [time, setTime] = useState()
+	const time = useRef()
 	const missCount = useRef()
 	const rate = useRef()
 	const average = useRef()
+	const [prevResult, setPrevResult] = useState()
 
 	useEffect(() => {
-		if (!location.state) {
-			navigate("/", { replace: true })
-		} else {
-			const ms = location.state.time
-			setTime(msToTimestamp(ms))
-			missCount.current = location.state.missCount
-			rate.current = String((10 / (10 + missCount.current)) * 100).slice(0, 5)
-			average.current = getAverage(ms)
-		}
+		const ms = location.state.time
+		time.current = msToTimestamp(ms)
+		missCount.current = location.state.missCount
+		rate.current = String((10 / (10 + missCount.current)) * 100).slice(0, 5)
+		average.current = getAverage(ms)
+		axios
+			.get("http://localhost:5000/result/latest")
+			.then((res) => {
+				setPrevResult(res.data)
+			})
+			.then(() => {
+				axios.post("http://localhost:5000/result/create", {
+					clearTime: time.current,
+					missCount: missCount.current,
+					average: average.current,
+					rate: rate.current,
+				})
+			})
 	}, [])
 
 	return (
@@ -38,19 +49,26 @@ const Result = () => {
 						<Title data-testid="title">結果</Title>
 						<List>
 							<ListItem data-testid="time">
-								経過時間: <BlueText>{time}</BlueText>
+								経過時間: <BlueText>{time.current}</BlueText>(
+								<BlueText>{prevResult ? prevResult.clearTime : ""}</BlueText>)
 							</ListItem>
 							<ListItem data-testid="correctCount">
-								正しく打ったキーの数: <BlueText>10</BlueText>
+								正しく打ったキーの数: <BlueText>10</BlueText>(
+								<BlueText>{prevResult ? "10" : ""}</BlueText>)
 							</ListItem>
 							<ListItem data-testid="average">
-								平均キータイプ数: <BlueText>{average.current}</BlueText>回/秒
+								平均キータイプ数: <BlueText>{average.current}</BlueText>回/秒(
+								<BlueText>{prevResult ? prevResult.average : ""}</BlueText>
+								{prevResult ? "回/秒" : ""})
 							</ListItem>
 							<ListItem data-testid="missCount">
-								ミスタイプ数: <BlueText>{missCount.current}</BlueText>
+								ミスタイプ数: <BlueText>{missCount.current}</BlueText>(
+								<BlueText>{prevResult ? prevResult.missCount : ""}</BlueText>)
 							</ListItem>
 							<ListItem data-testid="rate">
-								正確率: <BlueText>{rate.current}</BlueText>%
+								正確率: <BlueText>{rate.current}</BlueText>%(
+								<BlueText>{prevResult ? prevResult.rate : ""}</BlueText>
+								{prevResult ? "%" : ""})
 							</ListItem>
 						</List>
 						<Button

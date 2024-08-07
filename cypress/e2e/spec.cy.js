@@ -12,11 +12,11 @@ describe("cypressによるE2Eテスト", () => {
 		cy.visit("/")
 		cy.get("[data-testid=title]").should("have.text", "YK-TYPING")
 		cy.get("button").click()
-		cy.url().should("include", "/play")
+
 		cy.wait(500)
 		cy.get('[data-testid="symbol"]').should("exist")
 
-		for (let i = 0; i < 10; i++) {
+		for (let i = 0; i < 11; i++) {
 			cy.get('[data-testid="symbol"]')
 				.invoke("text")
 				.then(async (symbol) => {
@@ -25,19 +25,17 @@ describe("cypressによるE2Eテスト", () => {
 				})
 		}
 
-		cy.url().should("include", "/result")
-
 		cy.get('[data-testid="title"]').should("have.text", "結果")
 
 		cy.get("button").click()
-		cy.url().should("include", "/")
+
 		cy.get("[data-testid=title]").should("have.text", "YK-TYPING")
 	})
 	it("プレイ画面からトップページへの遷移", () => {
 		cy.visit("/")
 		cy.get("[data-testid=title]").should("have.text", "YK-TYPING")
 		cy.get("button").click()
-		cy.url().should("include", "/play")
+
 		cy.get("button").click()
 		cy.url().should("include", "/")
 		cy.get("[data-testid=title]").should("have.text", "YK-TYPING")

@@ -40,6 +40,8 @@ e2e:
     script:
         - yarn add cypress
         - yarn start &
+        - cd postgreApi &
+        - node index.js &
         - yarn cypress run
     rules:
         - when: always

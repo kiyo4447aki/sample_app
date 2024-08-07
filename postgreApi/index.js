@@ -31,7 +31,7 @@ app.post("/result/create", async (req, res) => {
 	res.status(201).send("created")
 })
 
-app.get("/result/letest", async (req, res) => {
+app.get("/result/latest", async (req, res) => {
 	try {
 		await db.authenticate()
 	} catch (e) {
@@ -42,7 +42,7 @@ app.get("/result/letest", async (req, res) => {
 	res.status(200).json(result)
 })
 
-const port = 4000
+const port = 5000
 app.listen(port, () => {
 	console.log(`Server is started. port:${port}`)
 })
