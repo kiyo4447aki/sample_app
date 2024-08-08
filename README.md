@@ -84,7 +84,7 @@ minikube tunnel
 5. host 名でアプリにアクセスできることを確認
    ブラウザもしくは curl コマンドを用いて kiyoakiyamamoto.info へアクセス
 
-# ingress の環境構築(Windows 環境下)
+# skaffold の環境構築(Windows 環境下)
 
 1. クラスタ内に前回作成したリソースを削除
 
@@ -141,3 +141,13 @@ skaffold dev
 ```
 
 3. minikube のトンネリングを行い`minikube tunnel`、ホストマシンの hosts ファイルに`127.0.0.1 webapi.kiyoakiyamamoto.info`を追記
+
+# postgres api の環境構築（minikube上）
+
+1. minikube を起動、docker を minikube に接続(k8s の環境構築を参照)
+2. skaffold を起動、pod、replicaset、deployment、service、ingress を作成
+```
+skaffold dev
+```
+3. postgresを用いたAPIとDBサーバの接続が確立するまで待機
+4. windows環境下であれば`minikube tunnel`を実行、ホストマシンの hosts ファイルに`127.0.0.1 postgre.webapi.kiyoakiyamamoto.info`を追記

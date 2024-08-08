@@ -14,7 +14,7 @@ app.use((err, req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-const db = new Sequelize(`postgres://kiyo:postgresPass@postgre.kiyoakiyamamoto.info/kiyo`)
+const db = new Sequelize(`postgres://kiyo:postgresPass@service-postgre-db:5432/kiyo`)
 
 const Result = db.define("Result", resultModel)
 
