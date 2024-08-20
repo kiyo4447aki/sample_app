@@ -4,6 +4,10 @@ import { Sequelize } from "sequelize"
 import { resultModel } from "./model.js"
 import bodyParser from "body-parser"
 
+
+const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));
+await sleep(30000)
+
 const app = express()
 
 app.use(cors())
@@ -17,6 +21,7 @@ app.use(bodyParser.json())
 const db = new Sequelize(`postgres://kiyo:postgresPass@service-postgre-db:5432/kiyo`)
 
 const Result = db.define("Result", resultModel)
+
 
 Result.sync()
 
@@ -42,7 +47,7 @@ app.get("/result/latest", async (req, res) => {
 	res.status(200).json(result)
 })
 
-const port = 5000
+const port = 5000;
+
 app.listen(port, () => {
-	console.log(`Server is started. port:${port}`)
-})
+	console.log(`Server is started. port:${port}`)})
