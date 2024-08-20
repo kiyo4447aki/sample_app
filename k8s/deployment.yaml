@@ -72,7 +72,7 @@ kind: Deployment
 metadata:
     name: deployment-game-app-postgre-api
 spec:
-    replicas: 2
+    replicas: 1
     selector:
         matchLabels:
             app: game-app-postgre-api

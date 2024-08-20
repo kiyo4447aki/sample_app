@@ -32,7 +32,7 @@ spec:
                     pathType: Prefix
                     backend:
                         service:
-                            name: service-game-app-api
+                            name: service-game-app-postgre-api
                             port:
                                 number: 5000
 
