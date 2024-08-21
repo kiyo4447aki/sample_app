@@ -9,7 +9,7 @@ import Button from "../../components/Button"
 import { useNavigate } from "react-router"
 import axios from "axios"
 
-const apiUrl = "http://webapi.kiyoakiyamamoto.info/getsymbol"
+const apiUrl = "http://localhost:4000/getsymbol"
 
 const Game = () => {
 	const navigate = useNavigate()

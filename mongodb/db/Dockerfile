@@ -1,0 +1,12 @@
+FROM mongo
+
+ENV MONGO_INITDB_ROOT_USERNAME="kiyo"
+ENV MONGO_INITDB_ROOT_PASSWORD="mongoPass"
+ENV MONGO_INITDB_DATABASE="kiyo"
+
+ENV TZ="Asia/Tokyo"
+RUN echo $TZ > /etc/timezone
+
+
+
+EXPOSE 27017

@@ -26,12 +26,12 @@ const Result = () => {
 		rate.current = String((10 / (10 + missCount.current)) * 100).slice(0, 5)
 		average.current = getAverage(ms)
 		axios
-			.get("http://postgre.webapi.kiyoakiyamamoto.info/result/latest")
+			.get("http://localhost:5000/result/latest")
 			.then((res) => {
 				setPrevResult(res.data)
 			})
 			.then(() => {
-				axios.post("http://postgre.webapi.kiyoakiyamamoto.info/result/create", {
+				axios.post("http://localhost:5000/result/create", {
 					clearTime: time.current,
 					missCount: missCount.current,
 					average: average.current,
