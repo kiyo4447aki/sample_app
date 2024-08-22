@@ -6,11 +6,11 @@ describe("cypressによるE2Eテスト", () => {
 			statusCode: 200,
 			body: getSymbol(),
 		})
-		cy.intercept("GET", "http://postgre.webapi.kiyoakiyamamoto.info/result/latest", {
+		cy.intercept("GET", "http://mongo.webapi.kiyoakiyamamoto.info/result/latest", {
 			statusCode: 200,
 			body: { clearTime: "00:00:00", average: "1.0", missCount: 0, rate: "100" },
 		})
-		cy.intercept("POST", "http://postgre.webapi.kiyoakiyamamoto.info/result/create", {
+		cy.intercept("POST", "http://mongo.webapi.kiyoakiyamamoto.info/result/create", {
 			statusCode: 200,
 		})
 	})

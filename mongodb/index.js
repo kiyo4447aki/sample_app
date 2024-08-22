@@ -10,7 +10,7 @@ await sleep(30000)
 
 const app = express()
 
-const mongooseUri = "mongodb://kiyo:mongoPass@localhost:27017/"
+const mongooseUri = "mongodb://kiyo:mongoPass@service-game-app-mongo-db:27017/"
 await mongoose.connect(mongooseUri)
 
 app.use(cors())

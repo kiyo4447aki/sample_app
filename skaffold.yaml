@@ -17,15 +17,15 @@ build:
                   - "**/*"
           docker:
               dockerfile: Dockerfile
-        - image: game-app-postgre-api
-          context: postgreApi
+        - image: game-app-mongo-api
+          context: mongodb
           sync:
               infer:
                   - "**/*"
           docker:
               dockerfile: Dockerfile
-        - image: postgre-db
-          context: ./postgreApi/db
+        - image: game-app-mongo-db
+          context: ./mongodb/db
           sync:
               infer:
                   - "**/*"

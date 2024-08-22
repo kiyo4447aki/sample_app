@@ -47,44 +47,44 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: deployment-postgre-db
+    name: deployment-game-app-mongo-api
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: game-app-postgre-db
+            app: game-app-mongo-api
 
     template:
         metadata:
             labels:
-                app: game-app-postgre-db
+                app: game-app-mongo-api
         spec:
             containers:
-                - name: postgre-db
-                  image: "postgre-db:1"
+                - name: game-app-mongo-api
+                  image: "game-app-mongo-api:1"
                   imagePullPolicy: IfNotPresent
                   ports:
-                      - containerPort: 5432
+                      - containerPort: 5000
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: deployment-game-app-postgre-api
+    name: deployment-game-app-mongo-db
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: game-app-postgre-api
+            app: game-app-mongo-db
 
     template:
         metadata:
             labels:
-                app: game-app-postgre-api
+                app: game-app-mongo-db
         spec:
             containers:
-                - name: game-app-postgre-api
-                  image: "game-app-postgre-api:1"
+                - name: game-app-mongo-db
+                  image: "game-app-mongo-db:1"
                   imagePullPolicy: IfNotPresent
                   ports:
-                      - containerPort: 5000
+                      - containerPort: 27017

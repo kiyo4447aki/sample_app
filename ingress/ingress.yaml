@@ -25,14 +25,14 @@ spec:
                             name: service-game-app-api
                             port:
                                 number: 4000
-        - host: postgre.webapi.kiyoakiyamamoto.info
+        - host: mongo.webapi.kiyoakiyamamoto.info
           http:
               paths:
                   - path: /
                     pathType: Prefix
                     backend:
                         service:
-                            name: service-game-app-postgre-api
+                            name: service-game-app-mongo-api
                             port:
                                 number: 5000
 
