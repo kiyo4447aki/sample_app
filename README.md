@@ -151,3 +151,13 @@ skaffold dev
 ```
 3. postgresを用いたAPIとDBサーバの接続が確立するまで待機
 4. windows環境下であれば`minikube tunnel`を実行、ホストマシンの hosts ファイルに`127.0.0.1 postgre.webapi.kiyoakiyamamoto.info`を追記
+
+# mongodb api の環境構築（minikube上）
+
+1. minikube を起動、docker を minikube に接続(k8s の環境構築を参照)
+2. skaffold を起動、pod、replicaset、deployment、service、ingress を作成
+```
+skaffold dev
+```
+3. mongodbを用いたAPIとDBサーバの接続が確立するまで待機
+4. windows環境下であれば`minikube tunnel`を実行、ホストマシンの hosts ファイルに`127.0.0.1 mongo.webapi.kiyoakiyamamoto.info`を追記
