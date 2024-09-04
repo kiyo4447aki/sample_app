@@ -3,7 +3,6 @@ import cors from "cors"
 import bodyParser from "body-parser"
 import mongoose from "mongoose"
 import { resultSchema } from "./schema.js"
-import { decycle } from "json-cyclic"
 
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time))
 await sleep(30000)
